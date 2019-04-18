@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -22,14 +25,22 @@ public class View {
         }
     }
 
-    public void printToPlot(double array[][]){
+    public void printToPlot(double array[][], String path){
         DecimalFormat df=new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
+        StringBuilder writeToFile=new StringBuilder("");
         for(int t=0; t<array.length; t++) {
             for (int i = 0; i < array[t].length; i++) {
-                print("{" + df.format(Constants.xStep * i) + "," + df.format(Constants.timeStep * t) + ","
-                        +df.format(array[t][i]) + "},");
+                writeToFile.append(df.format(Constants.xStep * i))
+                        .append(" ").append(df.format(Constants.timeStep * t)).append(" ")
+                        .append(df.format(array[t][i])).append(" ");
             }
-            print("\n");
+            writeToFile.append("\n");
+        }
+        try {
+            BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(path));
+            bufferedWriter.write(writeToFile.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
