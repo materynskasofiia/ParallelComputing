@@ -2,8 +2,8 @@
  * Послідовна реалізація явного методу
  */
 public class SequentialSolving {
-    public static void main(String[] args) {
-        double[][] matrix = new double[Constants.numberOfTimeIterations+1][Constants.numberOfXIterations+1];
+    static double[][] matrix = new double[Constants.numberOfTimeIterations+1][Constants.numberOfXIterations+1];
+    static void calculate(){
         View view=new View();
         //початкові умови t=0
         for (int i = 0; i < Constants.numberOfXIterations+1; i++) {
@@ -25,8 +25,8 @@ public class SequentialSolving {
             }
         }
         //вивід результату на екран
-        view.printArray(matrix);
-        //вивід результуту для побудови графіку
-        view.printToPlot(matrix);
+        //view.printArray(matrix);
+        //вивід результуту в файл для побудови графіку
+        view.printToPlot(matrix, Constants.filePathSequential);
     }
 }
