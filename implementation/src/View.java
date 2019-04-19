@@ -39,6 +39,7 @@ public class View {
         try {
             BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(path));
             bufferedWriter.write(writeToFile.toString());
+            bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

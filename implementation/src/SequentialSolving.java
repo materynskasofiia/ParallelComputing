@@ -3,6 +3,7 @@
  */
 public class SequentialSolving {
     static double[][] matrix = new double[Constants.numberOfTimeIterations+1][Constants.numberOfXIterations+1];
+    static  int finalT;
     static void calculate(){
         View view=new View();
         //початкові умови t=0
@@ -15,6 +16,7 @@ public class SequentialSolving {
             matrix[t][Constants.numberOfXIterations] = Math.pow(Constants.c0 -
                     Constants.a * Constants.c1 * t * Constants.timeStep + Constants.c2, -1);
         }
+        long beginTime=System.currentTimeMillis(); //System.currentTimeMillis() System.nanoTime()
         //всі інші, крім крайових значень розв'язку за виведеною вручну формулою
         for (int t = 0; t < Constants.numberOfTimeIterations ; t++) {
             for (int i = 1; i < Constants.numberOfXIterations ; i++) {
@@ -24,9 +26,11 @@ public class SequentialSolving {
                         / (2 * Math.pow(Constants.xStep * matrix[t][i], 2)) + matrix[t][i];
             }
         }
+        long endTime=System.currentTimeMillis();
+        view.print("Sequential: "+(endTime-beginTime)+" ms\n");
         //вивід результату на екран
         //view.printArray(matrix);
         //вивід результуту в файл для побудови графіку
-        view.printToPlot(matrix, Constants.filePathSequential);
+        //view.printToPlot(matrix, Constants.filePathSequential);
     }
 }
