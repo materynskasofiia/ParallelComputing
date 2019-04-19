@@ -3,6 +3,6 @@ public class Main {
         ExactValues.calculate();
         SequentialSolving.calculate();
         ComputationalError computationalError=new ComputationalError();
-        System.out.println("Computational error: "+computationalError.computeError()+"%");
+        System.out.println("Computational error: "+computationalError.computeError(SequentialSolving.matrix)+"%");
     }
 }
